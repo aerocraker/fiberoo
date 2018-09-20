@@ -1,12 +1,13 @@
 function fib(num){
   let listOfFib = [];
-  let sum = 0;
-  const fib1 = 0;
-  const fib2= 1;
+  let fib1 = 0;
+  let fib2= 1;
   listOfFib.push(fib1, fib2);
-  for (let i = 0; i <= num; i++){
-    sum += fib1;
-    listOfFib.push(sum);
+  for (let i = 0; i <= num - 3; i++){
+    const next = fib1 + fib2;
+    listOfFib.push(next);
+    fib1 = fib2;
+    fib2 = next;
   }
   return listOfFib;
 }
@@ -14,9 +15,13 @@ function fib(num){
 console.log(fib(10));
 
 function numToStrings(nums){
-  return _.map({one: 1, two: 2, three: 3}, function(num, key){ return num * 3; });
+  return _.map(nums, n => `${n}`);
 }
 
-function numEvenNums() {
+console.log(numToStrings(fib(10)));
 
+function numEvenNums(nums) {
+  return _.filter(nums, n => (n %2 === 0)).length;
 }
+
+console.log(numEvenNums(fib(10)));
